@@ -1,8 +1,11 @@
 package com.yuefeng.dao;
 
 import com.yuefeng.model.AbcTest;
+import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+import java.util.List;
+
+//@Mapper
 public interface AbcTestMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -15,4 +18,6 @@ public interface AbcTestMapper {
     int updateByPrimaryKeySelective(AbcTest record);
 
     int updateByPrimaryKey(AbcTest record);
+
+    List<String> getAbcTestName();
 }
