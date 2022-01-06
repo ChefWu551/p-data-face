@@ -1,5 +1,8 @@
 package com.yuefeng.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.yuefeng.common.ResponseData;
+import com.yuefeng.model.AbcTest;
 import com.yuefeng.service.AbcTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +21,33 @@ public class AbcTestController {
         return "my name is abc";
     }
 
-    @RequestMapping(value = "name")
+    @RequestMapping(value = "name", method = RequestMethod.GET)
     public String getAbcNames() {
         return abcTestService.getAbcName().toString();
+    }
+
+    @RequestMapping(value = "json", method = RequestMethod.GET)
+    public JSONObject getAbcJson() {
+        JSONObject jo = new JSONObject();
+        jo.put("name", "xioaming");
+        jo.put("age", 10);
+        return jo;
+    }
+
+    @RequestMapping(value = "fail")
+    public ResponseData<JSONObject> getAbcFail() {
+        JSONObject jo = new JSONObject();
+        jo.put("name", "xioaming");
+        jo.put("age", 10);
+        int e = 1 / 0 ;
+        return ResponseData.success(jo);
+    }
+
+    @RequestMapping(value = "model", method = RequestMethod.GET)
+    public AbcTest getAbcModel() {
+        AbcTest abcTest = new AbcTest();
+        abcTest.setAge(10);
+        abcTest.setName("xiaodong");
+        return abcTest;
     }
 }
