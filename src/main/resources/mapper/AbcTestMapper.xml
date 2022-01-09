@@ -20,4 +20,8 @@
   <select id="getAbcTestName" resultType="java.lang.String">
     select name from abc_test;
   </select>
+
+  <insert id="insert" parameterType="com.yuefeng.model.AbcTest">
+    insert into abc_test (name, age, score) values (#{name}, #{age}, #{score})
+  </insert>
 </mapper>

@@ -1,45 +1,24 @@
 package com.yuefeng.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import java.math.BigDecimal;
 
+
+@ApiModel("AbcTest")
+@Data
 public class AbcTest {
+    @ApiModelProperty("自增id")
     private Integer id;
 
+    @ApiModelProperty("姓名")
     private String name;
 
+    @ApiModelProperty("年龄")
     private Integer age;
 
+    @ApiModelProperty("得分")
     private BigDecimal score;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public BigDecimal getScore() {
-        return score;
-    }
-
-    public void setScore(BigDecimal score) {
-        this.score = score;
-    }
 }

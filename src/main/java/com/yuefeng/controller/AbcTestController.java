@@ -5,6 +5,7 @@ import com.yuefeng.common.ResponseData;
 import com.yuefeng.model.AbcTest;
 import com.yuefeng.service.AbcTestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,5 +50,10 @@ public class AbcTestController {
         abcTest.setAge(10);
         abcTest.setName("xiaodong");
         return abcTest;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "save")
+    public Integer save(@RequestBody AbcTest abc) {
+        return abcTestService.save(abc);
     }
 }
