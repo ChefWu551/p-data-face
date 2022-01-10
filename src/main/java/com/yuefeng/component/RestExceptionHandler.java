@@ -2,6 +2,7 @@ package com.yuefeng.component;
 
 import com.yuefeng.common.ResponseCode;
 import com.yuefeng.common.ResponseData;
+import com.yuefeng.exception.ObjectNotNullException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +22,11 @@ public class RestExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseData<String> exception(Exception e) {
         log.error("全局异常信息 ex={}", e.getMessage(), e);
+        // todo: 代码优化
+        if (e instanceof ObjectNotNullException) {
+            return ResponseData.fail(((ObjectNotNullException) e).getCode(), ((ObjectNotNullException) e).getMsg());
+        }
+
         return ResponseData.fail(ResponseCode.SERVER_EXCEPTION.getCode(), e.getMessage());
     }
 

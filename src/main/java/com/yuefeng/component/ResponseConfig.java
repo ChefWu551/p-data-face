@@ -24,12 +24,12 @@ public class ResponseConfig<T> implements ResponseBodyAdvice<T> {
     @SneakyThrows
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if(o instanceof String){
+        if (o instanceof String) {
             return objectMapper.writeValueAsString(ResponseData.success(o));
         }
 
-        if(o instanceof ResponseData){
-          return o;
+        if (o instanceof ResponseData) {
+            return o;
         }
 
         return ResponseData.success(o);

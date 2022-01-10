@@ -16,19 +16,19 @@
         </commentGenerator>
 
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
-                        connectionURL="${spring.datasource.url}"
-                        userId="${spring.datasource.username}"
-                        password="${spring.datasource.password}">
-            <property name="nullCatalogMeansCurrent" value="true"/>
-        </jdbcConnection>
-
-<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-<!--                        connectionURL="jdbc:mysql://127.0.0.1:3306/abc_test"-->
-<!--                        userId="root"-->
-<!--                        password="rootroot">-->
+<!--        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"-->
+<!--                        connectionURL="${spring.datasource.url}"-->
+<!--                        userId="${spring.datasource.username}"-->
+<!--                        password="${spring.datasource.password}">-->
 <!--            <property name="nullCatalogMeansCurrent" value="true"/>-->
 <!--        </jdbcConnection>-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/interface_config"
+                        userId="root"
+                        password="rootroot">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
 
 
         <javaTypeResolver>
@@ -53,8 +53,8 @@
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table tableName="abc_test"
-               domainObjectName="AbcTest"
+        <table tableName="data_config"
+               domainObjectName="DataConfig"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

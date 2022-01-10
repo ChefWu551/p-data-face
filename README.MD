@@ -1,16 +1,68 @@
 # TODOLIST
 
+## 认证处理
+
+- 增加认证（done）
+- 远端服务请求返回用户信息
+
+## 配置中心
+
+- 接入nacos
+- 权限中心sdk及原理
+- 配置中心sdk及原理接入
+
+## 消息推送
+
+- websocket链接
+
+## 多数据源
+
+- 对接多数据源
+
+## 线程池ThreadPool
+
+## 代码优化
+
+- 全局异常捕获通过动态代理来处理（不是用instance of）
+- 重写 generatorconfig以符合生成文件符合swagger标准
 
 
-| 功能点                                            | 完成日期 | 状态 |
-| ------------------------------------------------- | -------- | ---- |
-| 对接多数据源                                      |          |      |
-| 增加数据反射动态生成接口数据                      |          |      |
-| 配置中心sdk及原理接入                             |          |      |
-| 权限中心sdk及原理                                 |          |      |
-| swagger接口规范                                   | 20211224 | done |
-| 统一控制接口返回                                  | 20211224 | done |
-| 统一控制异常输出                                  | 20211224 | done |
-| 重写 generatorconfig以符合生成文件符合swagger标准 |          |      |
-| 增加认证                                          |          |      |
 
+## 常用util类及组件沉淀
+
+- http请求
+- 字符串通用类
+- http响应码
+
+## 难点：
+
+- yaml解析
+
+- yaml对应model的转化
+
+- 
+
+- 切换数据源获取结果
+
+  
+
+# 知识点：
+
+## 1. spring 相关
+
+### 1.1. @RequestAttribute和@RequestParam和@Param
+
+- @RequestAttribute 适用于内置程序的参数传参，通过name映射
+- @RequestParam 适用于url的传参，通过name映射
+- @Param 适用于dao层的参数命名
+
+### 1.2. @Configuration和@Component
+
+- @Configuration
+- @Compnent
+
+## 2. 
+
+
+
+## 

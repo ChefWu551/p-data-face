@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuefeng.dao.DataConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.yuefeng.model.DataConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="parameter" property="parameter" jdbcType="VARCHAR" />
+    <result column="datasource_id" property="datasourceId" jdbcType="INTEGER" />
+    <result column="datasource_name" property="datasourceName" jdbcType="VARCHAR" />
+    <result column="is_cache" property="isCache" jdbcType="INTEGER" />
+    <result column="expire_time" property="expireTime" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yuefeng.model.DataConfig" extends="BaseResultMap" >
+    <result column="path_tempalte" property="pathTempalte" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, path, description, parameter, datasource_id, datasource_name, is_cache, 
+    expire_time, created_time, updated_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    path_tempalte
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from data_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from data_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yuefeng.model.DataConfig" >
+    insert into data_config (id, name, path, 
+      description, parameter, datasource_id, 
+      datasource_name, is_cache, expire_time, 
+      created_time, updated_time, path_tempalte
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{parameter,jdbcType=VARCHAR}, #{datasourceId,jdbcType=INTEGER}, 
+      #{datasourceName,jdbcType=VARCHAR}, #{isCache,jdbcType=INTEGER}, #{expireTime,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{pathTempalte,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuefeng.model.DataConfig" >
+    insert into data_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="parameter != null" >
+        parameter,
+      </if>
+      <if test="datasourceId != null" >
+        datasource_id,
+      </if>
+      <if test="datasourceName != null" >
+        datasource_name,
+      </if>
+      <if test="isCache != null" >
+        is_cache,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="pathTempalte != null" >
+        path_tempalte,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null" >
+        #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="datasourceId != null" >
+        #{datasourceId,jdbcType=INTEGER},
+      </if>
+      <if test="datasourceName != null" >
+        #{datasourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCache != null" >
+        #{isCache,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pathTempalte != null" >
+        #{pathTempalte,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuefeng.model.DataConfig" >
+    update data_config
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null" >
+        parameter = #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="datasourceId != null" >
+        datasource_id = #{datasourceId,jdbcType=INTEGER},
+      </if>
+      <if test="datasourceName != null" >
+        datasource_name = #{datasourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCache != null" >
+        is_cache = #{isCache,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pathTempalte != null" >
+        path_tempalte = #{pathTempalte,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yuefeng.model.DataConfig" >
+    update data_config
+    set name = #{name,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      datasource_id = #{datasourceId,jdbcType=INTEGER},
+      datasource_name = #{datasourceName,jdbcType=VARCHAR},
+      is_cache = #{isCache,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      path_tempalte = #{pathTempalte,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuefeng.model.DataConfig" >
+    update data_config
+    set name = #{name,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      datasource_id = #{datasourceId,jdbcType=INTEGER},
+      datasource_name = #{datasourceName,jdbcType=VARCHAR},
+      is_cache = #{isCache,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPath" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from data_config
+    where path = #{path}
+  </select>
+
+</mapper>
