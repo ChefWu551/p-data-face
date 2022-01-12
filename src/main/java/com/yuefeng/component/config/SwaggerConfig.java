@@ -1,4 +1,4 @@
-package com.yuefeng.component;
+package com.yuefeng.component.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;

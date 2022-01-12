@@ -1,4 +1,4 @@
-package com.yuefeng.component;
+package com.yuefeng.component.config;
 
 import com.yuefeng.common.UserConstant;
 import com.yuefeng.exception.ObjectNotNullException;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import static com.yuefeng.common.ResponseCode.TOKEN_LACK;
 
 @Slf4j
-public class AuthTokenFilter implements HandlerInterceptor {
+public class AuthTokenInterceptor implements HandlerInterceptor {
 
     @Value("${oauth.resource.url}")
     private String oauthResourceUrl;

@@ -1,4 +1,4 @@
-package com.yuefeng.component;
+package com.yuefeng.component.exception;
 
 import com.yuefeng.common.ResponseCode;
 import com.yuefeng.common.ResponseData;

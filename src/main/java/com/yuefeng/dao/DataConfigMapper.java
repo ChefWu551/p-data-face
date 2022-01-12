@@ -1,8 +1,10 @@
 package com.yuefeng.dao;
 
 import com.yuefeng.model.DataConfig;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.PathVariable;
 
+//@Mapper
 public interface DataConfigMapper {
     int deleteByPrimaryKey(Integer id);
 

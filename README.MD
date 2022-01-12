@@ -26,7 +26,7 @@
 - 全局异常捕获通过动态代理来处理（不是用instance of）
 - 重写 generatorconfig以符合生成文件符合swagger标准
 
-
+## 深入理解拦截器和过滤器的区别及应用
 
 ## 常用util类及组件沉淀
 
@@ -60,6 +60,10 @@
 
 - @Configuration
 - @Compnent
+
+### 1.3. filter和interceptor
+
+https://juejin.cn/post/6844903811874553869
 
 ## 2. 
 

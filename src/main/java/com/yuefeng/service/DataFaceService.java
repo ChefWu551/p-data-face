@@ -8,4 +8,6 @@ public interface DataFaceService {
     Object getPathResult(String path, JSONObject param);
 
     int save(DataConfig dc);
+
+    DataConfig getDataConfig(String path);
 }

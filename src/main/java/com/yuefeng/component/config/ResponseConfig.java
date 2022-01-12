@@ -1,4 +1,4 @@
-package com.yuefeng.component;
+package com.yuefeng.component.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yuefeng.common.ResponseData;

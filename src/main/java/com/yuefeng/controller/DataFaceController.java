@@ -30,4 +30,9 @@ public class DataFaceController {
         DataConfig dc = DataConfig.newBuilder().name(name).path(path).pathTempalte(pathTemplate).build();
         return service.save(dc);
     }
+
+    @RequestMapping(value = "config/get", method = RequestMethod.GET)
+    public DataConfig getDataConfig(String path) {
+        return service.getDataConfig(path);
+    }
 }

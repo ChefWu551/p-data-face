@@ -1,5 +1,6 @@
 package com.yuefeng.service.impl;
 
+import com.yuefeng.component.datasource.DataSourceContextHolder;
 import com.yuefeng.dao.AbcTestMapper;
 import com.yuefeng.model.AbcTest;
 import com.yuefeng.service.AbcTestService;
@@ -16,6 +17,7 @@ public class AbcTestServiceImpl implements AbcTestService {
 
     @Override
     public List<String> getAbcName() {
+        DataSourceContextHolder.setDBType("abcTestDB");
         return abcTestMapper.getAbcTestName();
     }
 
