@@ -11,8 +11,12 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @Description: swagger配置
+ * @Author: Wu Yuefeng
+ * @Date: Created on 2022/1/12
+ */
 @Configuration
-
 @ConditionalOnExpression("${swagger.enable:true}")
 public class SwaggerConfig {
     @Bean

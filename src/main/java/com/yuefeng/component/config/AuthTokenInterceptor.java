@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import static com.yuefeng.common.ResponseCode.TOKEN_LACK;
 
+/**
+ * @Description: 认证处理
+ * @Author: Wu Yuefeng
+ * @Date: Created on 2019/5/24
+ */
 @Slf4j
 public class AuthTokenInterceptor implements HandlerInterceptor {
 

@@ -11,6 +11,11 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+/**
+ * @Description: 返回格式统一控制
+ * @Author: Wu Yuefeng
+ * @Date: Created on 2022/1/12
+ */
 @RestControllerAdvice(basePackages = "com.yuefeng.controller")
 public class ResponseConfig<T> implements ResponseBodyAdvice<T> {
     @Autowired

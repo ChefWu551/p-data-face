@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * @Description: 全局异常处理
+ * @Author: Wu Yuefeng
+ * @Date: Created on 2022/1/12
+ */
 @Slf4j
 @RestControllerAdvice(basePackages = "com.yuefeng.controller")
 public class RestExceptionHandler {
