@@ -25,7 +25,6 @@ public class DataFaceServiceImpl implements DataFaceService {
 
     @Override
     public DataFaceResult<Object> getPathResult(String path, JSONObject param) {
-        DataSourceContextHolder.setDBType("dataFaceDB");
         DataConfig dc = dataConfigMapper.selectByPath(path);
         if (dc == null || dc.getPathTempalte() == null) throw new ObjectNotNullException(CONFIG_EXCEPTION.getCode(), CONFIG_EXCEPTION.getMsg());
         // todo: 缓存处理
@@ -46,7 +45,6 @@ public class DataFaceServiceImpl implements DataFaceService {
 
     @Override
     public DataConfig getDataConfig(String path) {
-//        DataSourceContextHolder.setDBType("dataFaceDB");
         return dataConfigMapper.selectByPath(path);
     }
 
