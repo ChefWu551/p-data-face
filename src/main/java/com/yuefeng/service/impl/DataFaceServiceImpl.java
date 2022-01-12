@@ -9,7 +9,10 @@ import com.yuefeng.model.DataConfig;
 import com.yuefeng.model.DataFaceResult;
 import com.yuefeng.service.DataFaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import javax.sql.DataSource;
 
 import static com.yuefeng.common.ResponseCode.CONFIG_EXCEPTION;
 
@@ -43,7 +46,7 @@ public class DataFaceServiceImpl implements DataFaceService {
 
     @Override
     public DataConfig getDataConfig(String path) {
-        DataSourceContextHolder.setDBType("dataFaceDB");
+//        DataSourceContextHolder.setDBType("dataFaceDB");
         return dataConfigMapper.selectByPath(path);
     }
 

@@ -5,6 +5,8 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -17,6 +19,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.alibaba.druid.pool.DruidDataSource;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +56,7 @@ public class DataSourceConfig {
 
     @Bean(name = "dataFaceDB", initMethod = "init", destroyMethod = "close")
     @Primary
-    public DruidDataSource dataSourceErp(Environment environment) throws Exception {
+    public DruidDataSource dataFaceDB(Environment environment) throws Exception {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername("root");
         dataSource.setPassword("rootroot");
@@ -65,7 +68,7 @@ public class DataSourceConfig {
     }
 
     @Bean(name = "abcTestDB", initMethod = "init", destroyMethod = "close")
-    public DruidDataSource dataSourceDss(Environment environment) throws Exception {
+    public DruidDataSource abcTestDB(Environment environment) throws Exception {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername("root");
         dataSource.setPassword("rootroot");
@@ -99,7 +102,6 @@ public class DataSourceConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(resourcePatternResolver.getResources("classpath:mapper/*.xml"));
-
         sqlSessionFactoryBean.setTypeAliasesPackage("com.yuefeng.model");
         return sqlSessionFactoryBean;
     }
