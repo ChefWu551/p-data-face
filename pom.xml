@@ -37,21 +37,6 @@
             <version>2.1.1</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-jdbc</artifactId>-->
-<!--            <version>4.3.10.RELEASE</version>-->
-<!--        </dependency>-->
-<!--         <dependency>-->
-<!--                <groupId>org.mybatis</groupId>-->
-<!--                <artifactId>mybatis</artifactId>-->
-<!--                <version>${mybatis.version}</version>-->
-<!--            </dependency>-->
-<!--          <dependency>-->
-<!--                <groupId>org.mybatis</groupId>-->
-<!--                <artifactId>mybatis-spring</artifactId>-->
-<!--                <version>${mybatis-spring.version}</version>-->
-<!--            </dependency>-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
