@@ -19,7 +19,8 @@ import org.apache.naming.factory.DataSourceLinkFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.yuefeng.common.ResponseCode.CONFIG_EXCEPTION;
 
@@ -42,13 +43,14 @@ public class DataFaceServiceImpl implements DataFaceService {
         DataConfig dc = dataConfigMapper.selectByPath(path);
         if (dc == null || dc.getPathTempalte() == null)
             throw new ObjectNotNullException(CONFIG_EXCEPTION.getCode(), CONFIG_EXCEPTION.getMsg());
-        // 缓存是否生效中
+        // 缓存是否有效，若是，则直接返回
+        DataSourceContextHolder.setDBType("abcTestDB");
         DataFaceResult<Object> dataFaceResult = getCacheValue(dc);
         if (dataFaceResult != null) return dataFaceResult;
         // 解析配置
         DataFaceResult<Object> dfr = handle(dc);
         // 返回结果，缓存处理(需要缓存，且缓存过期)
-        updateCache(dc, dfr);
+        if (dc.getIsCache() == 1) updateCache(dc, dfr);
         return dfr;
     }
 
@@ -114,13 +116,22 @@ public class DataFaceServiceImpl implements DataFaceService {
     // todo: 代理模式来处理优化
     public void registerSeriesConfigs(DataFaceConfig dfc, DataFaceResult<Object> dfr) {
         DataResultSet<Object> dataResultSet;
+        // 处理list场景
         if (dfc.getList() != null) {
             dataResultSet = getSeriesData(dfc.getList());
             dfr.setData(dataResultSet.getResult());
         }
 
+        // 处理axis场景
         if (dfc.getAxis() != null) {
+            AxisDataConfig axisDataConfig = dfc.getAxis();
+            List<SeriesConfig> seriesConfigs = axisDataConfig.getSeries().stream().sorted(Comparator.comparingInt(SeriesConfig::getId)).collect(Collectors.toList());
+            Map<Integer, DataResultSet<Object>> resultSetMap = new HashMap<>();
+            for (SeriesConfig seriesConfig : seriesConfigs) {
+                resultSetMap.put(seriesConfig.getId(), getSeriesData(seriesConfig));
+            }
 
+            log.info("");
         }
     }
 
@@ -132,6 +143,7 @@ public class DataFaceServiceImpl implements DataFaceService {
 
         RequestHandler<Object> rh = (RequestHandler) rhe.getHandlerClass().getConstructor().newInstance();
         log.info("处理器是：" + rh.getClass());
+        DataSourceContextHolder.setDBType("abcTestDB");
         return rh.handle(sc.getData().getParams(), businessDataMapper);
     }
 

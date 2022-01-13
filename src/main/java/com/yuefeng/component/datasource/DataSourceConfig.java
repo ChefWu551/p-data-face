@@ -5,8 +5,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -19,13 +18,12 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.alibaba.druid.pool.DruidDataSource;
 
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Description:
- * @Author:
+ * @Description: 多数据源配置
+ * @Author: Wu Yuefeng
  * @Date: Created on 24/02/2018
  */
 
@@ -73,7 +71,7 @@ public class DataSourceConfig {
         dataSource.setUsername("root");
         dataSource.setPassword("rootroot");
         dataSource.setValidationQuery("SELECT 1");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/interface_config");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/abc_test");
         druidMysqlSettings(dataSource);
 
         return dataSource;
@@ -81,8 +79,8 @@ public class DataSourceConfig {
 
 
     @Bean(name = "dataSource")
-    public DynamicDataSource dataSource(DruidDataSource dataFaceDB,
-                                        DruidDataSource abcTestDB) throws Exception{
+    public DynamicDataSource dataSource(@Qualifier("dataFaceDB")DruidDataSource dataFaceDB,
+                                        @Qualifier("abcTestDB")DruidDataSource abcTestDB) {
 
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         Map<Object,Object> targetDataSources = new HashMap<Object, Object>();
@@ -90,6 +88,7 @@ public class DataSourceConfig {
         targetDataSources.put("abcTestDB", abcTestDB);
         dynamicDataSource.setTargetDataSources(targetDataSources);
         dynamicDataSource.setDefaultTargetDataSource(dataFaceDB);
+
         return dynamicDataSource;
     }
 

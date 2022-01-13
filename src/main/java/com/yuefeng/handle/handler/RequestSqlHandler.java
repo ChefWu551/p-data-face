@@ -15,8 +15,8 @@ public class RequestSqlHandler<T> implements RequestHandler<T>{
     @SneakyThrows
     @Override
     public DataResultSet<List<Map<String, Object>>> handle(JSONObject dataParams, Object handleMap) {
-        DataSourceContextHolder.setDBType("abcTestDB");
-        List<Map<String, Object>> value = ((BusinessDataMapper)handleMap).selectData("select * from abc_test");
+
+        List<Map<String, Object>> value = ((BusinessDataMapper)handleMap).selectData(dataParams.get("sql").toString());
         DataResultSet<List<Map<String, Object>>> dataResultSet = new DataResultSet<>();
         dataResultSet.setResult(value);
         return dataResultSet;
