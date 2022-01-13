@@ -1,12 +1,15 @@
 package com.yuefeng.model;
 
 import com.yuefeng.exception.ObjectNotNullException;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import java.util.Date;
 
 import static com.yuefeng.common.ResponseCode.CONFIG_EXCEPTION;
 
+
 @Data
+@ApiModel("数据配置基础信息")
 public class DataConfig {
     private Integer id;
 

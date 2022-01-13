@@ -1,15 +1,14 @@
 package com.yuefeng.model;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-/**
- * 拼接组装返回的结果
- */
 @Data
+@ApiModel("最终接口返回结果")
 public class DataFaceResult<T> {
 
     private String title;
     private String subTitle;
 
-    private T rObject;
+    private T data;
 }

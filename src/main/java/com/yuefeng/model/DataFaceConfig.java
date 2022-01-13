@@ -1,12 +1,10 @@
 package com.yuefeng.model;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-/**
- * 第一层 - 数据模板接口配置相关信息
- *
- */
 @Data
+@ApiModel("接口模板配置 - 第一层 - 数据模板接口配置相关信息")
 public class DataFaceConfig {
 
     private String title;

@@ -20,6 +20,7 @@
 - ~~对接多数据源~~
 - ~~处理默认数据源失效问题~~
 - 处理优雅统一选择某个数据源
+- 了解spring mybatis和原生的jdbc connection的区别
 
 ## 线程池ThreadPool
 

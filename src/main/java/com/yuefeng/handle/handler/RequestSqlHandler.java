@@ -1,42 +1,24 @@
 package com.yuefeng.handle.handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yuefeng.component.datasource.DataSourceContextHolder;
+import com.yuefeng.dao.BusinessDataMapper;
 import com.yuefeng.model.DataResultSet;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.util.List;
+import java.util.Map;
 
-public class RequestSqlHandler implements RequestHandler{
 
-//    @Autowired
-//    DataSource dataSource;
-
-//    // todo: dataSource需要完善
-//    public RequestSqlHandler() {
-//        this.dataSource = null;
-//    }
+public class RequestSqlHandler<T> implements RequestHandler<T>{
 
     @SneakyThrows
     @Override
-    public DataResultSet handle(JSONObject dataParams) {
-        String sqlTemplate = dataParams.getString("sql");
-
- /*       try(Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sqlTemplate)) {
-            ResultSet resultSet = statement.executeQuery();
-            ResultSetMetaData metaData = resultSet.getMetaData();
-
-            int columnCount = metaData.getColumnCount();
-
-        }*/
-
-        System.out.println();
-
-        return null;
+    public DataResultSet<List<Map<String, Object>>> handle(JSONObject dataParams, Object handleMap) {
+        DataSourceContextHolder.setDBType("abcTestDB");
+        List<Map<String, Object>> value = ((BusinessDataMapper)handleMap).selectData("select * from abc_test");
+        DataResultSet<List<Map<String, Object>>> dataResultSet = new DataResultSet<>();
+        dataResultSet.setResult(value);
+        return dataResultSet;
     }
 }

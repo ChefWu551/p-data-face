@@ -1,5 +1,6 @@
 package com.yuefeng.handle;
 
+import com.yuefeng.service.impl.DataFaceServiceImpl;
 import org.junit.Test;
 
 public class HandlerFactoryTest {
@@ -19,7 +20,7 @@ public class HandlerFactoryTest {
         "  result:\n" +
         "    handler: map";
 
-        HandlerFactory hf = new HandlerFactory();
+        DataFaceServiceImpl hf = new DataFaceServiceImpl();
         hf.getFaceConfig(pathTemplate);
     }
 }
