@@ -1,11 +1,13 @@
 package com.yuefeng.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.yuefeng.component.datasource.DataSourceContextHolder;
 import com.yuefeng.dao.BusinessDataMapper;
+import com.yuefeng.dao.DataCacheMapper;
 import com.yuefeng.dao.DataConfigMapper;
 import com.yuefeng.exception.ObjectNotNullException;
-import com.yuefeng.handle.HandlerFactory;
 import com.yuefeng.handle.InterfaceConfig;
 import com.yuefeng.handle.handler.RequestHandler;
 import com.yuefeng.handle.handler.RequestHandlerEnum;
@@ -16,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.naming.factory.DataSourceLinkFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 import static com.yuefeng.common.ResponseCode.CONFIG_EXCEPTION;
 
@@ -30,23 +34,21 @@ public class DataFaceServiceImpl implements DataFaceService {
     @Autowired
     BusinessDataMapper businessDataMapper;
 
+    @Autowired
+    DataCacheMapper dataCacheMapper;
+
     @Override
     public DataFaceResult<Object> getPathResult(String path, JSONObject param) {
         DataConfig dc = dataConfigMapper.selectByPath(path);
         if (dc == null || dc.getPathTempalte() == null)
             throw new ObjectNotNullException(CONFIG_EXCEPTION.getCode(), CONFIG_EXCEPTION.getMsg());
+        // 缓存是否生效中
+        DataFaceResult<Object> dataFaceResult = getCacheValue(dc);
+        if (dataFaceResult != null) return dataFaceResult;
         // 解析配置
-        HandlerFactory th = new HandlerFactory();
         DataFaceResult<Object> dfr = handle(dc);
-
-
-        // 组装结果
         // 返回结果，缓存处理(需要缓存，且缓存过期)
-        if (dc.getIsCache() != 0) {
-            DataSourceContextHolder.setDBType("dataFaceDB");
-
-            updateCache(dfr);
-        }
+        updateCache(dc, dfr);
         return dfr;
     }
 
@@ -70,9 +72,32 @@ public class DataFaceServiceImpl implements DataFaceService {
         return getFaceConfig(dc.getPathTempalte());
     }
 
-    // todo: 处理缓存
-    public void updateCache(DataFaceResult<Object> dfr) {
+    // todo: 测试功能且优化代码，这里只需要用一个结果集
+    // 判断缓存是否生效中
+    public DataFaceResult<Object> getCacheValue(DataConfig dc) {
+        // 有缓存
+        boolean isCache = dc.getIsCache() == 1;
+        if (!isCache) return null;
+        // 缓存存在
+        DataCache dataConfig = dataCacheMapper.selectByPath(dc.getPath());
+        boolean isExit = !(dataConfig == null);
+        if (!isExit) return null;
+        // 缓存未过期
+        Date expireDate = new Date(dataConfig.getCreatedTime().getTime() + dc.getExpireTime() * 1000);
 
+        if (!expireDate.after(new Date())) return null;
+        return JSON.parseObject(dataCacheMapper.selectByPath(dc.getPath()).getResult(), DataFaceResult.class);
+    }
+
+    // 更新缓存
+    public void updateCache(DataConfig dc, DataFaceResult<Object> dfr) {
+        if (dc.getIsCache() == 1) {
+            DataSourceContextHolder.setDBType("dataFaceDB");
+            DataCache dataCache = new DataCache();
+            dataCache.setPath(dc.getPath());
+            dataCache.setResult(JSONObject.toJSONString(dfr));
+            dataCacheMapper.insertSelective(dataCache);
+        }
     }
 
     // 解析配置
@@ -83,8 +108,6 @@ public class DataFaceServiceImpl implements DataFaceService {
         dfr.setSubTitle(dfc.getSubTitle());
 
         registerSeriesConfigs(dfc, dfr);
-
-
         return dfr;
     }
 
