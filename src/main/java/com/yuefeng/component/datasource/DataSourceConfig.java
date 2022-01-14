@@ -6,6 +6,7 @@ import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -53,28 +54,16 @@ public class DataSourceConfig {
      */
 
     @Bean(name = "dataFaceDB", initMethod = "init", destroyMethod = "close")
+    @ConfigurationProperties(prefix = "data.face.datasource")
     @Primary
-    public DruidDataSource dataFaceDB(Environment environment) throws Exception {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUsername("root");
-        dataSource.setPassword("rootroot");
-        dataSource.setValidationQuery("SELECT 1");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/interface_config");
-        druidMysqlSettings(dataSource);
-
-        return dataSource;
+    public DruidDataSource dataFaceDB(Environment environment) {
+        return new DruidDataSource();
     }
 
     @Bean(name = "abcTestDB", initMethod = "init", destroyMethod = "close")
-    public DruidDataSource abcTestDB(Environment environment) throws Exception {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUsername("root");
-        dataSource.setPassword("rootroot");
-        dataSource.setValidationQuery("SELECT 1");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/abc_test");
-        druidMysqlSettings(dataSource);
-
-        return dataSource;
+    @ConfigurationProperties(prefix = "abc.test.datasource")
+    public DruidDataSource abcTestDB(Environment environment) {
+        return new DruidDataSource();
     }
 
 

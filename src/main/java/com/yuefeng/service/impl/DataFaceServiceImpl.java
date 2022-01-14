@@ -2,7 +2,6 @@ package com.yuefeng.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.yuefeng.component.datasource.DataSourceContextHolder;
 import com.yuefeng.dao.BusinessDataMapper;
 import com.yuefeng.dao.DataCacheMapper;
@@ -74,7 +73,6 @@ public class DataFaceServiceImpl implements DataFaceService {
         return getFaceConfig(dc.getPathTempalte());
     }
 
-    // todo: 测试功能且优化代码，这里只需要用一个结果集
     // 判断缓存是否生效中
     public DataFaceResult<Object> getCacheValue(DataConfig dc) {
         // 有缓存
