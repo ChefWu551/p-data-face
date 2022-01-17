@@ -36,6 +36,9 @@
 - http请求
 - 字符串通用类
 - http响应码
+- stringUtil
+- Assert
+- HttpUtil
 
 ## 数据门面项目 - 难点总结：
 
@@ -66,7 +69,15 @@
 
 ### 1.3. filter和interceptor
 
-https://juejin.cn/post/6844903811874553869
+[解答详情](https://juejin.cn/post/6844903811874553869)
+
+### 1.4. spring cloud常用注解
+
+- @ConfigurationProperties: 对带setter方法的类进行复制，添加会通过prefix之后的命名进行映射对应的属性值
+
+  [使用方法](https://www.cnblogs.com/jimoer/p/11374229.html) 
+
+- @Primary
 
 ## 2. 
 
