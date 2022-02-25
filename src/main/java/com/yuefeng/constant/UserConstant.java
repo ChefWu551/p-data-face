@@ -1,4 +1,4 @@
-package com.yuefeng.common;
+package com.yuefeng.constant;
 
 public class UserConstant {
 

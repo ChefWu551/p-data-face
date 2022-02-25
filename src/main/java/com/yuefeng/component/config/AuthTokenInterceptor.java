@@ -1,18 +1,16 @@
 package com.yuefeng.component.config;
 
-import com.yuefeng.common.UserConstant;
+import com.yuefeng.constant.UserConstant;
 import com.yuefeng.exception.ObjectNotNullException;
 import com.yuefeng.model.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.yuefeng.common.ResponseCode.TOKEN_LACK;
+import static com.yuefeng.constant.ResponseCodeConstant.TOKEN_LACK;
 
 /**
  * @Description: 认证处理

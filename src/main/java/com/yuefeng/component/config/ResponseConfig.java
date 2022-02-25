@@ -1,7 +1,7 @@
 package com.yuefeng.component.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yuefeng.common.ResponseData;
+import com.yuefeng.model.ResponseData;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;

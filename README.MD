@@ -1,6 +1,6 @@
 # TODOLIST
 
-## 认证处理
+## 01.18 认证处理
 
 - 增加认证（done）
 - 远端服务请求返回用户信息
@@ -11,7 +11,7 @@
 - 权限中心sdk及原理
 - 配置中心sdk及原理接入
 
-## 消息推送
+## 01.19 消息推送
 
 - websocket链接
 
@@ -24,25 +24,58 @@
 
 ## 线程池ThreadPool
 
-## 代码优化
+## 01.17 代码优化
 
 - 全局异常捕获通过动态代理来处理（不是用instance of）
 - 重写 generatorconfig以符合生成文件符合swagger标准
 
-## 深入理解拦截器和过滤器的区别及应用
+## 01.17 深入理解拦截器和过滤器的区别及应用
 
-## 常用util类及组件沉淀
+## 01.17 常用util类及组件沉淀
 
 - http请求
+
+  - 使用httpcomponents
+
+  ```xml
+  <dependency>
+    <groupId>org.apache.httpcomponents.client5</groupId>
+    <artifactId>httpclient5</artifactId>
+    <version>5.1.2</version>
+  </dependency>
+  
+  <dependency>
+    <groupId>org.apache.httpcomponents.client5</groupId>
+    <artifactId>httpclient5-fluent</artifactId>
+    <version>5.1.2</version>
+  </dependency>
+  ```
+
+  - 使用继承好的包装类
+
+  
+
 - 字符串通用类
+
 - http响应码
+
 - stringUtil
+
 - Assert
+
 - HttpUtil
+
+## 01.20 redis
+
+- 常用指令
+- jdis
+- lucense
 
 ## 数据门面项目 - 难点总结：
 
-- yaml解析及对应到各层的model上面
+- ~~yaml解析及对应到各层的model上面~~
+
+  - ~~直接使用依赖 snakeyaml `loadAs(String yaml, Class<T> type)`~~
 
 - 设计模式的灵活运用，
 

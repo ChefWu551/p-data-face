@@ -1,7 +1,7 @@
 package com.yuefeng.component.exception;
 
-import com.yuefeng.common.ResponseCode;
-import com.yuefeng.common.ResponseData;
+import com.yuefeng.constant.ResponseCodeConstant;
+import com.yuefeng.model.ResponseData;
 import com.yuefeng.exception.ObjectNotNullException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,7 @@ public class RestExceptionHandler {
             return ResponseData.fail(((ObjectNotNullException) e).getCode(), ((ObjectNotNullException) e).getMsg());
         }
 
-        return ResponseData.fail(ResponseCode.SERVER_EXCEPTION.getCode(), e.getMessage());
+        return ResponseData.fail(ResponseCodeConstant.SERVER_EXCEPTION.getCode(), e.getMessage());
     }
 
 }

@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import java.util.Date;
 
-import static com.yuefeng.common.ResponseCode.CONFIG_EXCEPTION;
+import static com.yuefeng.constant.ResponseCodeConstant.CONFIG_EXCEPTION;
 
 
 @Data

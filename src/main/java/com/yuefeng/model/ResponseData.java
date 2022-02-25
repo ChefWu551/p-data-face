@@ -1,5 +1,6 @@
-package com.yuefeng.common;
+package com.yuefeng.model;
 
+import com.yuefeng.constant.ResponseCodeConstant;
 import lombok.Data;
 // todo: 装饰着模式修改，通过builder的方法来简化代码
 
@@ -18,9 +19,9 @@ public class ResponseData<T> {
     public static <T> ResponseData<T> success(T data) {
         ResponseData<T> rd = new ResponseData<>();
         rd.setTimestamp(rd.getTimestamp());
-        rd.setStatus(ResponseCode.SUCCESS.getCode());
+        rd.setStatus(ResponseCodeConstant.SUCCESS.getCode());
         rd.setData(data);
-        rd.setMsg(ResponseCode.SUCCESS.getMsg());
+        rd.setMsg(ResponseCodeConstant.SUCCESS.getMsg());
 
         return rd;
     }

@@ -1,6 +1,6 @@
-package com.yuefeng.common;
+package com.yuefeng.constant;
 
-public enum ResponseCode {
+public enum ResponseCodeConstant {
 
     SUCCESS(200, "请求成功"),
     AUTH_FAIL(403, "认证出错"),
@@ -21,7 +21,7 @@ public enum ResponseCode {
         return msg;
     }
 
-    ResponseCode(int code, String msg) {
+    ResponseCodeConstant(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
